@@ -6,8 +6,12 @@ class GildedRose
 
   def update_quality
     @items.each do |item|
-      unless item.name == 'Sulfuras'
-        end
+      case item.name
+      when 'Sulfuras, Hand of Ragnaros'
+        next
+      else
+        item.quality -=1
+      end
       end
     end
 end
