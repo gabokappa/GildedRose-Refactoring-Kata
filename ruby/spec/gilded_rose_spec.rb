@@ -16,11 +16,11 @@ describe GildedRose do
       expect(items[0].quality).to eq(9)
     end
 
-    # it 'reduces the sell_in by one for a standard item' do
-    #   items = [Item.new('sample', 5, 10)]
-    #   GildedRose.new(items).update_quality
-    #   expect(items[0].sell_in).to eq(4)
-    # end
+    it 'reduces the sell_in by one for a standard item' do
+      items = [Item.new('sample', 5, 10)]
+      GildedRose.new(items).update_quality
+      expect(items[0].sell_in).to eq(4)
+    end
 
     # it 'quality degrades x 2 after sell by date' do
     #   items = [Item.new('sample', 0, 10)]
