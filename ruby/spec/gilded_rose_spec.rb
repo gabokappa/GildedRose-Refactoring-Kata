@@ -79,12 +79,12 @@ describe GildedRose do
       expect(items[0].sell_in).to eq(5)
     end
 
-    # it 'Conjured items degrade by 4 after sell_in date' do
-    #   items = [Item.new('Conjured', 0, 40)]
-    #   GildedRose.new(items).update_quality
-    #   expect(items[0].quality).to eq(36)
-    #   expect(items[0].sell_in).to eq(-1)
-    # end
+    it 'Conjured items degrade by 4 after sell_in date' do
+      items = [Item.new('Conjured', 0, 40)]
+      GildedRose.new(items).update_quality
+      expect(items[0].quality).to eq(36)
+      expect(items[0].sell_in).to eq(-1)
+    end
 
   end
 

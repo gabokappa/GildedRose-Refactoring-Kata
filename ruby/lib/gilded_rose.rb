@@ -13,6 +13,8 @@ class GildedRose
         brie_update(item)
       when 'Backstage passes to a TAFKAL80ETC concert'
         backstage_update(item)
+      when 'Conjured'
+        conjured_update(item)
       else
         standard_update(item)
       end
@@ -24,7 +26,7 @@ class GildedRose
   def standard_update(item)
     item.sell_in -= 1
     item.quality -= 1 if item.quality > 0
-    item.quality -= 1 if item.sell_in < 0 && item.quality > 0
+    item.quality -= 1 if item.sell_in <= 0 && item.quality > 0
   end
 
   def brie_update(item)
@@ -41,6 +43,11 @@ class GildedRose
     item.sell_in -= 1
   end
 
+  def conjured_update(item)
+    item.quality -= 2
+    item.quality -= 2 if item.sell_in <= 0
+    item.sell_in -= 1
+  end
 end
 
 class Item
