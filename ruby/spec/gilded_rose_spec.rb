@@ -21,5 +21,23 @@ describe GildedRose do
       GildedRose.new(items).update_quality
       expect(items[0].sell_in).to eq(4)
     end
+
+    it 'quality degrades x 2 after sell by date' do
+      items = [Item.new('sample', 0, 10)]
+      GildedRose.new(items).update_quality
+      expect(items[0].quality).to eq(8)
+    end
+
+    it 'quality of an item never goes negative' do
+      items = [Item.new('sample', 0, 0)]
+      GildedRose.new(items).update_quality
+      expect(items[0].quality).to eq(0)
+    end
+
+    it 'Aged Brie increases in quality per day' do
+      items = [Item.new('Aged Brie', 1, 0)]
+      GildedRose.new(items).update_quality
+      expect(items[0].quality).to eq(1)
+    end
   end
 end
