@@ -35,18 +35,18 @@ describe GildedRose do
       shop.update_quality
       expect(items[0].quality).to eq(0)
     end
+## TODO test that Brie sell_in goes down
+    it 'Aged Brie increases in quality per day' do
+      items = [Item.new('Aged Brie', 1, 0)]
+      GildedRose.new(items).update_quality
+      expect(items[0].quality).to eq(1)
+    end
 
-    # it 'Aged Brie increases in quality per day' do
-    #   items = [Item.new('Aged Brie', 1, 0)]
-    #   GildedRose.new(items).update_quality
-    #   expect(items[0].quality).to eq(1)
-    # end
-
-    # it 'Brie quality increases by 2 when sell_in negative' do
-    #   items = [Item.new('Aged Brie', 0, 0)]
-    #   GildedRose.new(items).update_quality
-    #   expect(items[0].quality).to eq(2)
-    # end
+    it 'Brie quality increases by 2 when sell_in negative' do
+      items = [Item.new('Aged Brie', 0, 0)]
+      GildedRose.new(items).update_quality
+      expect(items[0].quality).to eq(2)
+    end
 
     # it 'Brie continues to increase in quality by 2 after negative' do
     #   items = [Item.new('Aged Brie', 0, 0)]
