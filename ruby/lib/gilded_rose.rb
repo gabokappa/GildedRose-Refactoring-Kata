@@ -11,6 +11,11 @@ class GildedRose
         next
       when 'Aged Brie'
         brie_update(item)
+      when 'Backstage passes to a TAFKAL80ETC concert'
+        item.quality += 1
+        item.quality += 1 if item.sell_in <= 10
+        item.quality += 1 if item.sell_in <= 5
+        item.sell_in -= 1
       else
         standard_update(item)
       end
