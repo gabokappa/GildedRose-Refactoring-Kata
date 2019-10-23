@@ -66,6 +66,14 @@ describe GildedRose do
       expect(items[0].quality).to eq(40)
       expect(items[0].sell_in).to eq(6)
     end
+
+    # it 'Conjured items degrade by 2 per day' do
+    #   items = [Item.new('Conjured', 6, 40)]
+    #   GildedRose.new(items).update_quality
+    #   expect(items[0].quality).to eq(38)
+    #   expect(items[0].sell_in).to eq(5)
+    # end
+
   end
 
   describe 'Backstage passes' do
@@ -97,7 +105,4 @@ describe GildedRose do
       expect(items[0].sell_in).to eq(-1)
     end
   end
-
-
-
 end
