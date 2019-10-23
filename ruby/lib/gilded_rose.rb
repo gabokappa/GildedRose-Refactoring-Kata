@@ -12,10 +12,7 @@ class GildedRose
       when 'Aged Brie'
         brie_update(item)
       when 'Backstage passes to a TAFKAL80ETC concert'
-        item.quality += 1
-        item.quality += 1 if item.sell_in <= 10
-        item.quality += 1 if item.sell_in <= 5
-        item.sell_in -= 1
+        backstage_update(item)
       else
         standard_update(item)
       end
@@ -33,6 +30,14 @@ class GildedRose
   def brie_update(item)
     item.quality += 1 if item.sell_in <= 0 && item.quality < 50
     item.quality += 1 if item.quality < 50
+    item.sell_in -= 1
+  end
+
+  def backstage_update(item)
+    item.quality += 1 unless item.quality == 50
+    item.quality += 1 if item.sell_in <= 10 && item.quality < 50
+    item.quality += 1 if item.sell_in <= 5 && item.quality < 50
+    item.quality = 0 if item.sell_in <= 0
     item.sell_in -= 1
   end
 
