@@ -18,15 +18,20 @@ class GildedRose
       else
         standard_update(item)
       end
-      item.sell_in -= 1 unless item.name == 'Sulfuras, Hand of Ragnaros'
+      update_all(item)
       end
   end
 
   private
 
+  def update_all(item)
+    item.sell_in -= 1
+    item.quality = 0 if item.quality.negative?
+  end
+
   def standard_update(item)
-    item.quality -= 1 if item.quality > 0
-    item.quality -= 1 if item.sell_in <= 0 && item.quality > 0
+    item.quality -= 1
+    item.quality -= 1 if item.sell_in <= 0 && item.quality.positive?
   end
 
   def brie_update(item)
@@ -44,7 +49,6 @@ class GildedRose
   def conjured_update(item)
     item.quality -= 2
     item.quality -= 2 if item.sell_in <= 0
-    item.quality = 0 if item.quality.negative?
   end
 end
 

@@ -55,6 +55,7 @@ describe GildedRose do
       shop.update_quality
       shop.update_quality
       expect(items[0].quality).to eq(4)
+      expect(items[0].sell_in).to eq(-2)
     end
 
     it 'quality is never more than 50' do
