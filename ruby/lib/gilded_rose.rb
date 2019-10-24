@@ -20,7 +20,7 @@ class GildedRose
       else
         change_quality(item, -1)
       end
-      update_all(item)
+      item.sell_in -= 1
       end
   end
 
@@ -29,18 +29,21 @@ class GildedRose
   def change_quality(item, num)
     item.quality += num
     item.quality += num if item.sell_in <= 0
-  end
-
-  def update_all(item)
-    item.sell_in -= 1
     item.quality = 50 if item.quality > 50
     item.quality = 0 if item.quality.negative?
   end
+
+  # def updates_to_all(item)
+  #   item.sell_in -= 1
+  #   # item.quality = 50 if item.quality > 50
+  #   # item.quality = 0 if item.quality.negative?
+  # end
 
   def backstage_quality_change(item)
     item.quality += 1
     item.quality += 1 if item.sell_in <= 10
     item.quality += 1 if item.sell_in <= 5
     item.quality = 0 if item.sell_in <= 0
+    item.quality = 50 if item.quality > 50
   end
 end
