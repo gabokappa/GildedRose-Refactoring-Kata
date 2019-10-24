@@ -10,13 +10,13 @@ class GildedRose
       when 'Sulfuras, Hand of Ragnaros'
         next
       when 'Aged Brie'
-        brie_update(item)
+        change_quality(item, 1)
       when 'Backstage passes to a TAFKAL80ETC concert'
         backstage_update(item)
       when 'Conjured Mana Cake'
-        conjured_update(item)
+        change_quality(item, -2)
       else
-        standard_update(item)
+        change_quality(item, -1)
       end
       update_all(item)
       end
@@ -24,21 +24,26 @@ class GildedRose
 
   private
 
+  def change_quality(item, num)
+    item.quality += num
+    item.quality += num if item.sell_in <= 0
+  end
+
   def update_all(item)
     item.sell_in -= 1
     item.quality = 50 if item.quality > 50
     item.quality = 0 if item.quality.negative?
   end
 
-  def standard_update(item)
-    item.quality -= 1
-    item.quality -= 1 if item.sell_in <= 0
-  end
-
-  def brie_update(item)
-    item.quality += 1 if item.sell_in <= 0
-    item.quality += 1 #if item.quality < 50
-  end
+  # def standard_update(item)
+  #   item.quality -= 1
+  #   item.quality -= 1 if item.sell_in <= 0
+  # end
+  #
+  # def brie_update(item)
+  #   item.quality += 1
+  #   item.quality += 1 if item.sell_in <= 0
+  # end
 
   def backstage_update(item)
     item.quality += 1
@@ -47,10 +52,10 @@ class GildedRose
     item.quality = 0 if item.sell_in <= 0
   end
 
-  def conjured_update(item)
-    item.quality -= 2
-    item.quality -= 2 if item.sell_in <= 0
-  end
+  # def conjured_update(item)
+  #   item.quality -= 2
+  #   item.quality -= 2 if item.sell_in <= 0
+  # end
 end
 
 class Item
