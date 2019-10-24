@@ -3,7 +3,7 @@
 require 'gilded_rose'
 require 'item'
 
-describe '#update_quality' do
+describe 'Standard items' do
     it 'does not change the name' do
       items = [Item.new('foo', 0, 0)]
       GildedRose.new(items).update_quality
@@ -28,69 +28,21 @@ describe '#update_quality' do
       expect(items[0].quality).to eq(8)
     end
 
-    it 'quality of an item never goes negative' do
-      items = [Item.new('sample', 0, 1)]
-      shop = GildedRose.new(items)
-      shop.update_quality
-      shop.update_quality
-      expect(items[0].quality).to eq(0)
-    end
+    describe 'All items' do
+      it 'quality of an item never goes negative' do
+        items = [Item.new('sample', 0, 1)]
+        shop = GildedRose.new(items)
+        shop.update_quality
+        shop.update_quality
+        expect(items[0].quality).to eq(0)
+      end
 
-    it 'Aged Brie increases in quality per day' do
-      items = [Item.new('Aged Brie', 1, 0)]
-      GildedRose.new(items).update_quality
-      expect(items[0].quality).to eq(1)
-      expect(items[0].sell_in).to eq(0)
-    end
-
-    it 'Brie quality increases by 2 when sell_in negative' do
-      items = [Item.new('Aged Brie', 0, 0)]
-      GildedRose.new(items).update_quality
-      expect(items[0].quality).to eq(2)
-    end
-
-    it 'Brie continues to increase in quality by 2 after negative' do
-      items = [Item.new('Aged Brie', 0, 0)]
-      shop = GildedRose.new(items)
-      shop.update_quality
-      shop.update_quality
-      expect(items[0].quality).to eq(4)
-      expect(items[0].sell_in).to eq(-2)
-    end
-
-    it 'quality is never more than 50' do
-      items = [Item.new('Aged Brie', 0, 49)]
-      shop = GildedRose.new(items)
-      shop.update_quality
-      shop.update_quality
-      expect(items[0].quality).to eq(50)
-    end
-
-    it 'Sulfuras attributes stay the same' do
-      items = [Item.new('Sulfuras, Hand of Ragnaros', 6, 60)]
-      GildedRose.new(items).update_quality
-      expect(items[0].quality).to eq(60)
-      expect(items[0].sell_in).to eq(6)
-    end
-
-    it 'Conjured items degrade by 2 per day' do
-      items = [Item.new('Conjured Mana Cake', 6, 40)]
-      GildedRose.new(items).update_quality
-      expect(items[0].quality).to eq(38)
-      expect(items[0].sell_in).to eq(5)
-    end
-
-    it 'Conjured items degrade by 4 after sell_in date' do
-      items = [Item.new('Conjured Mana Cake', 0, 40)]
-      GildedRose.new(items).update_quality
-      expect(items[0].quality).to eq(36)
-      expect(items[0].sell_in).to eq(-1)
-    end
-
-    it 'Conjured items cannot go in negative value' do
-      items = [Item.new('Conjured Mana Cake', 0, 0)]
-      GildedRose.new(items).update_quality
-      expect(items[0].quality).to eq(0)
-      expect(items[0].sell_in).to eq(-1)
+      it 'quality is never more than 50' do
+        items = [Item.new('Aged Brie', 0, 49)]
+        shop = GildedRose.new(items)
+        shop.update_quality
+        shop.update_quality
+        expect(items[0].quality).to eq(50)
+      end
     end
   end
