@@ -14,7 +14,7 @@ class GildedRose
       when 'Aged Brie'
         change_quality(item, 1)
       when 'Backstage passes to a TAFKAL80ETC concert'
-        backstage_update(item)
+        backstage_quality_change(item)
       when 'Conjured Mana Cake'
         change_quality(item, -2)
       else
@@ -37,7 +37,7 @@ class GildedRose
     item.quality = 0 if item.quality.negative?
   end
 
-  def backstage_update(item)
+  def backstage_quality_change(item)
     item.quality += 1
     item.quality += 1 if item.sell_in <= 10
     item.quality += 1 if item.sell_in <= 5
