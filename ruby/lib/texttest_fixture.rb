@@ -1,4 +1,4 @@
-require_relative './gilded_rose.rb'
+require_relative './old_code.rb'
 
 puts "OMGHAI!"
 items = [

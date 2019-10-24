@@ -26,23 +26,24 @@ class GildedRose
 
   def update_all(item)
     item.sell_in -= 1
+    item.quality = 50 if item.quality > 50
     item.quality = 0 if item.quality.negative?
   end
 
   def standard_update(item)
     item.quality -= 1
-    item.quality -= 1 if item.sell_in <= 0 && item.quality.positive?
+    item.quality -= 1 if item.sell_in <= 0
   end
 
   def brie_update(item)
-    item.quality += 1 if item.sell_in <= 0 && item.quality < 50
-    item.quality += 1 if item.quality < 50
+    item.quality += 1 if item.sell_in <= 0
+    item.quality += 1 #if item.quality < 50
   end
 
   def backstage_update(item)
-    item.quality += 1 unless item.quality == 50
-    item.quality += 1 if item.sell_in <= 10 && item.quality < 50
-    item.quality += 1 if item.sell_in <= 5 && item.quality < 50
+    item.quality += 1
+    item.quality += 1 if item.sell_in <= 10
+    item.quality += 1 if item.sell_in <= 5
     item.quality = 0 if item.sell_in <= 0
   end
 
