@@ -1,3 +1,5 @@
+require_relative './item.rb'
+
 class GildedRose
 
   def initialize(items)
@@ -35,39 +37,10 @@ class GildedRose
     item.quality = 0 if item.quality.negative?
   end
 
-  # def standard_update(item)
-  #   item.quality -= 1
-  #   item.quality -= 1 if item.sell_in <= 0
-  # end
-  #
-  # def brie_update(item)
-  #   item.quality += 1
-  #   item.quality += 1 if item.sell_in <= 0
-  # end
-
   def backstage_update(item)
     item.quality += 1
     item.quality += 1 if item.sell_in <= 10
     item.quality += 1 if item.sell_in <= 5
     item.quality = 0 if item.sell_in <= 0
-  end
-
-  # def conjured_update(item)
-  #   item.quality -= 2
-  #   item.quality -= 2 if item.sell_in <= 0
-  # end
-end
-
-class Item
-  attr_accessor :name, :sell_in, :quality
-
-  def initialize(name, sell_in, quality)
-    @name = name
-    @sell_in = sell_in
-    @quality = quality
-  end
-
-  def to_s()
-    "#{@name}, #{@sell_in}, #{@quality}"
   end
 end
