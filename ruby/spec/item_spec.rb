@@ -15,5 +15,4 @@ describe Item do
       expect(item.to_s).to eq('bag, 15, 20')
     end
   end
-
 end
