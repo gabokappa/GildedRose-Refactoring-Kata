@@ -33,11 +33,6 @@ class GildedRose
     item.quality = 0 if item.quality.negative?
   end
 
-  # def updates_to_all(item)
-  #   item.sell_in -= 1
-  #   # item.quality = 50 if item.quality > 50
-  #   # item.quality = 0 if item.quality.negative?
-  # end
 
   def backstage_quality_change(item)
     item.quality += 1

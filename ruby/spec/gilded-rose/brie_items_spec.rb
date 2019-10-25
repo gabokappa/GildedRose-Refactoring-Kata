@@ -23,4 +23,12 @@ describe 'Brie items' do
     expect(items[0].quality).to eq(4)
     expect(items[0].sell_in).to eq(-2)
   end
+
+  it 'quality is never more than 50' do
+    items = [Item.new('Aged Brie', 0, 49)]
+    shop = GildedRose.new(items)
+    shop.update_quality
+    shop.update_quality
+    expect(items[0].quality).to eq(50)
+  end
 end
