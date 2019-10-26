@@ -1,0 +1,15 @@
+Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 100
+
+AllCops:
+  Exclude:
+    - './ruby/spec/spec_helper.rb'
+    - './ruby/lib/old_code.rb'
+    - './ruby/lib/texttest_fixture.rb'
+  TargetRubyVersion: 2.6.3
