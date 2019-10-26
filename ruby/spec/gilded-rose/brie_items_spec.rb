@@ -31,4 +31,7 @@ describe 'Brie items' do
     shop.update_quality
     expect(items[0].quality).to eq(50)
   end
+
+
+
 end

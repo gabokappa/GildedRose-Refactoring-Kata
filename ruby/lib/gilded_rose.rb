@@ -1,7 +1,6 @@
 require_relative './item.rb'
 
 class GildedRose
-
   def initialize(items)
     @items = items
   end
@@ -21,7 +20,7 @@ class GildedRose
         change_quality(item, -1)
       end
       item.sell_in -= 1
-      end
+    end
   end
 
   private
@@ -32,7 +31,6 @@ class GildedRose
     item.quality = 50 if item.quality > 50
     item.quality = 0 if item.quality.negative?
   end
-
 
   def backstage_quality_change(item)
     item.quality += 1
